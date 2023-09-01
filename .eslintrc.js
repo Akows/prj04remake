@@ -11,6 +11,8 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
+        // Prettier는 줄바꿈 문자에 관해 자동으로 판단
+        endOfLine: 'auto',
         // 작은 따옴표 사용 여부.
         singleQuote: true,
         // 세미콜론 사용 여부.
