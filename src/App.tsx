@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import './App.css';
 import AppRouter from './router/AppRouter';
 
@@ -9,36 +8,10 @@ import AppRouter from './router/AppRouter';
 
 const App: React.FC = () => {
   return (
-    <AppWrapper>
+    <div>
       <AppRouter />
-    </AppWrapper>
+    </div>
   );
 };
 
 export default App;
-
-const AppWrapper = styled.div`
-  width: 100vw;
-  height: auto;
-
-  display: inline-flex;
-  align-items: center;
-  flex-direction: column;
-
-  border-radius: 20px;
-
-  border: 2px solid black;
-
-  @media (min-width: 800px) {
-    width: 600px;
-    height: auto;
-
-    display: inline-flex;
-    align-items: center;
-    flex-direction: column;
-
-    border-radius: 20px;
-
-    border: 2px solid black;
-  }
-`;
