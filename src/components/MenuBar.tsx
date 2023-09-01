@@ -114,15 +114,17 @@ const AppbarHeadLower = styled.div`
   width: 100%;
   height: 50%;
   display: flex;
+  justify-content: center;
 `;
 
 const ButtonArea = styled.div`
-  width: 50%;
+  width: 250px;
   height: 100%;
+  margin: 0 10px; // 버튼 사이에 간격을 주기 위해 마진을 추가합니다.
 `;
 
 const LowerButton = styled.button`
-  width: 90%;
+  width: 100%;
   height: 60%;
   margin-top: 10px;
   border-radius: 10px;

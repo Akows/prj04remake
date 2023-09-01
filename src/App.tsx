@@ -1,8 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import './App.css';
 import AppRouter from './router/AppRouter';
-
 import { AppDataProvider } from './context/AppDataContext';
 
 // React.FC?
