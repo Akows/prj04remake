@@ -1,22 +1,42 @@
 import React from 'react';
 import styled from 'styled-components';
+import useFetchCharacters from '../hooks/useFetchCharacters';
+import useInfiniteScroll from '../hooks/useInfiniteScroll';
 
 const CharactersList: React.FC = () => {
+  const { page, lastCharacterElementRef } = useInfiniteScroll();
+  const { data, loading, error } = useFetchCharacters(page);
+
   return (
     <ListContainer>
       <ListBody>
-        <ItemOuterWrapper>
-          <ItemWrapper>
-            <ItemTextWrapper>
-              <ItemName>datas</ItemName>
-            </ItemTextWrapper>
-          </ItemWrapper>
-        </ItemOuterWrapper>
+        {data.map((character, index) => {
+          if (data.length === index + 1) {
+            return (
+              <ItemOuterWrapper ref={lastCharacterElementRef} key={character}>
+                <ItemWrapper>
+                  <ItemTextWrapper>
+                    <ItemName>{character}</ItemName>
+                  </ItemTextWrapper>
+                </ItemWrapper>
+              </ItemOuterWrapper>
+            );
+          } else {
+            return (
+              <ItemOuterWrapper key={character}>
+                <ItemWrapper>
+                  <ItemTextWrapper>
+                    <ItemName>{character}</ItemName>
+                  </ItemTextWrapper>
+                </ItemWrapper>
+              </ItemOuterWrapper>
+            );
+          }
+        })}
       </ListBody>
     </ListContainer>
   );
 };
-
 export default CharactersList;
 
 const ListContainer = styled.div`

@@ -15,7 +15,7 @@ const initialState: AppDataState = {
   isLoading: false,
   isError: false,
   data: null,
-  displayComponent: null,
+  displayComponent: 'characters',
 };
 
 // 유니온 타입을 이용하여 action의 타입을 정의.
