@@ -2,10 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import useFetchCharacters from '../hooks/useFetchCharacters';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
+import Error from './common/Error';
+import Loading from './common/Loading';
 
 const CharactersList: React.FC = () => {
   const { page, lastCharacterElementRef } = useInfiniteScroll();
   const { data, loading, error } = useFetchCharacters(page);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <Error />;
+  }
 
   return (
     <ListContainer>
@@ -37,6 +47,7 @@ const CharactersList: React.FC = () => {
     </ListContainer>
   );
 };
+
 export default CharactersList;
 
 const ListContainer = styled.div`

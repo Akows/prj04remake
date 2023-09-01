@@ -1,7 +1,7 @@
 import React from 'react';
 
-const error: React.FC = () => {
-  return <div>error</div>;
+const Error: React.FC = () => {
+  return <div>Error</div>;
 };
 
-export default error;
+export default Error;
