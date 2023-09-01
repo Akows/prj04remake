@@ -31,9 +31,9 @@ const MenuBar: React.FC = () => {
           </Link>
         </MenuButtonArea>
         <AppTitleArea>
-          <Link to="/">
-            <TitleText>Genshindex</TitleText>
-          </Link>
+          <TitleText onClick={() => handleDisplayClick('introducemyself')}>
+            Genshindex
+          </TitleText>
         </AppTitleArea>
       </AppbarHeadUpper>
 

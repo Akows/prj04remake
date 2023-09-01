@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import CharactersList from '../components/CharactersList';
+import IntroduceMySelf from '../components/IntroduceMySelf';
 import MenuBar from '../components/MenuBar';
 import WeaponsList from '../components/WeaponsList';
 import { AppDataContext } from '../context/AppDataContext';
@@ -22,6 +23,7 @@ const MainPage: React.FC = () => {
       <MenuBar />
       {state.displayComponent === 'characters' && <CharactersList />}
       {state.displayComponent === 'weapons' && <WeaponsList />}
+      {state.displayComponent === 'introducemyself' && <IntroduceMySelf />}
     </MainPageWrapper>
   );
 };
