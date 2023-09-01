@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import './App.css';
 import AppRouter from './router/AppRouter';
 
@@ -11,9 +12,18 @@ import { AppDataProvider } from './context/AppDataContext';
 const App: React.FC = () => {
   return (
     <AppDataProvider>
-      <AppRouter />
+      <CenteredContainer>
+        <AppRouter />
+      </CenteredContainer>
     </AppDataProvider>
   );
 };
 
 export default App;
+
+const CenteredContainer = styled.div`
+  height: 100vh; // 화면의 높이 전체를 차지
+  display: flex; // flexbox를 사용
+  justify-content: center; // 수평 중앙 정렬
+  align-items: flex-start; // 수직 중앙 정렬
+`;
