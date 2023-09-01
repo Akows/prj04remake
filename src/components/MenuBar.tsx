@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import menuimg from '../assets/menu.png';
+import { AppDataContext } from '../context/AppDataContext';
 
 const MenuBar: React.FC = () => {
+  const appDataContext = useContext(AppDataContext);
+
+  if (!appDataContext) {
+    throw new Error('MenuBar must be used within an AppDataProvider');
+  }
+
+  const { dispatch } = appDataContext;
+
+  const handleDisplayClick = (componentName: string) => {
+    dispatch({
+      type: 'SET_DISPLAY',
+      component: componentName,
+    });
+  };
+
   return (
     <AppbarHead>
       <AppbarHeadUpper>
@@ -23,14 +39,14 @@ const MenuBar: React.FC = () => {
 
       <AppbarHeadLower>
         <ButtonArea>
-          <Link to="/characters">
-            <LowerButton>Characters</LowerButton>
-          </Link>
+          <LowerButton onClick={() => handleDisplayClick('characters')}>
+            Characters
+          </LowerButton>
         </ButtonArea>
         <ButtonArea>
-          <Link to="/weapons">
-            <LowerButton>Weapons</LowerButton>
-          </Link>
+          <LowerButton onClick={() => handleDisplayClick('weapons')}>
+            Weapons
+          </LowerButton>
         </ButtonArea>
       </AppbarHeadLower>
     </AppbarHead>
