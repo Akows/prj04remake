@@ -17,27 +17,26 @@ const CharactersList: React.FC = () => {
     return <Error />;
   }
 
+  console.log(data);
+
   return (
     <ListContainer>
       <ListBody>
         {data.map((character, index) => {
-          // 목록의 가장 마지막 요소는 무한 스크롤 동작을 위한 Observer DOM을 적용해야 한다.
-          // 따라서 전체 데이터의 length가 해당 요소의 index와 일치할 경우, 이 요소는 화면에 출력되는 가장 마지막 요소가 된다.
           const isLastElement = data.length === index + 1;
-
           return (
-            // isLastElement 변수를 이용, 현재 화면에 가장 마지막 요소에는 ref를 적용한다.
             <ItemOuterWrapper
               ref={isLastElement ? lastCharacterElementRef : null}
               key={character}
             >
-              <ItemWrapper>
-                {isLastElement && 'Img'}{' '}
-                {/* Img가 필요한 경우에만 추가되도록 조건부 렌더링 */}
-                <ItemTextWrapper>
-                  <ItemName>{character}</ItemName>
-                </ItemTextWrapper>
-              </ItemWrapper>
+              <ItemInfoWrapper>
+                <ItemName>{character.name}</ItemName>
+                <ItemDetails>
+                  <StarsInfo>{character.rarity}✦</StarsInfo>
+                  <ElementInfo>{character.vision}</ElementInfo>
+                </ItemDetails>
+              </ItemInfoWrapper>
+              {/* <CharacterImage src={character.imageUrl} alt={character.name} /> */}
             </ItemOuterWrapper>
           );
         })}
@@ -57,36 +56,54 @@ const ListBody = styled.div`
   width: 98%;
   height: 99%;
   margin: 5px;
+  display: flex;
+  flex-direction: column; // 여기서 세로 정렬을 위해 추가한 부분
 `;
 
 const ItemOuterWrapper = styled.div`
-  a {
-    text-decoration: none;
-    color: black;
-  }
-`;
-
-const ItemWrapper = styled.div`
-  width: 98%;
-  height: 150px;
-  margin: 5px;
-  border-radius: 10px;
   display: flex;
-  border: 1px solid black;
+  justify-content: space-between;
+  width: 100%;
+  height: 150px;
+  margin: 15px 0px; // 상하 간격을 15px로 조정
+  background-color: rgba(0, 0, 0, 0.3); // 투명도가 적용된 검정색
 `;
 
-const ItemTextWrapper = styled.div`
-  width: 70%;
-  height: 95%;
-  margin: 3px;
-  border-radius: 10px;
-  font-family: 'GIfont';
-  font-size: x-large;
-  font-weight: bolder;
+const ItemInfoWrapper = styled.div`
+  color: white; // 텍스트 색상을 흰색으로
+  align-self: flex-start; // 상단에 배치
+  flex-direction: column; // 세로로 배치
+  gap: 5px; // 세로 간격 지정
+`;
+
+const ItemDetails = styled.div`
+  display: flex; // 가로로 배치
+  gap: 15px; // 가로 간격 지정
 `;
 
 const ItemName = styled.div`
-  width: 100%;
-  height: 100%;
-  margin-top: 3px;
+  font-weight: bolder;
+  font-size: 32px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+`;
+
+const StarsInfo = styled.div`
+  display: flex; // 가로로 배열하기 위한 flex 추가
+  gap: 5px; // 가로로 배열된 요소들 사이의 간격 지정
+  margin-bottom: 5px;
+  margin-left: 15px;
+  font-size: 22px;
+`;
+
+const ElementInfo = styled.div`
+  display: flex; // 가로로 배열하기 위한 flex 추가
+  gap: 5px; // 가로로 배열된 요소들 사이의 간격 지정
+  margin-bottom: 5px;
+  font-size: 22px;
+`;
+
+const CharacterImage = styled.img`
+  width: 150px;
+  height: auto;
 `;
