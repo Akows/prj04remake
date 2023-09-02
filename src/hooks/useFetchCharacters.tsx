@@ -12,11 +12,22 @@ const useFetchCharacters = (page: number) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(`https://api.genshin.dev/characters`);
-        const slicedData = response.data.slice(
+        const characterNames = response.data;
+
+        const slicedNames = characterNames.slice(
           (page - 1) * ITEMS_PER_PAGE,
           page * ITEMS_PER_PAGE,
         );
-        setData(prevData => [...prevData, ...slicedData]);
+
+        // 각 캐릭터의 데이터를 가져옵니다.
+        const characterDataPromises = slicedNames.map((name: string) =>
+          axios.get(`https://api.genshin.dev/characters/${name}`),
+        );
+
+        const characterDataResponses = await Promise.all(characterDataPromises);
+        const characterData = characterDataResponses.map(res => res.data);
+
+        setData(prevData => [...prevData, ...characterData]);
         setLoading(false);
       } catch (err) {
         setError('Error fetching data');
