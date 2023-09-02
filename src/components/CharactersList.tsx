@@ -21,27 +21,25 @@ const CharactersList: React.FC = () => {
     <ListContainer>
       <ListBody>
         {data.map((character, index) => {
-          if (data.length === index + 1) {
-            return (
-              <ItemOuterWrapper ref={lastCharacterElementRef} key={character}>
-                <ItemWrapper>
-                  <ItemTextWrapper>
-                    <ItemName>{character}</ItemName>
-                  </ItemTextWrapper>
-                </ItemWrapper>
-              </ItemOuterWrapper>
-            );
-          } else {
-            return (
-              <ItemOuterWrapper key={character}>
-                <ItemWrapper>
-                  <ItemTextWrapper>
-                    <ItemName>{character}</ItemName>
-                  </ItemTextWrapper>
-                </ItemWrapper>
-              </ItemOuterWrapper>
-            );
-          }
+          // 목록의 가장 마지막 요소는 무한 스크롤 동작을 위한 Observer DOM을 적용해야 한다.
+          // 따라서 전체 데이터의 length가 해당 요소의 index와 일치할 경우, 이 요소는 화면에 출력되는 가장 마지막 요소가 된다.
+          const isLastElement = data.length === index + 1;
+
+          return (
+            // isLastElement 변수를 이용, 현재 화면에 가장 마지막 요소에는 ref를 적용한다.
+            <ItemOuterWrapper
+              ref={isLastElement ? lastCharacterElementRef : null}
+              key={character}
+            >
+              <ItemWrapper>
+                {isLastElement && 'Img'}{' '}
+                {/* Img가 필요한 경우에만 추가되도록 조건부 렌더링 */}
+                <ItemTextWrapper>
+                  <ItemName>{character}</ItemName>
+                </ItemTextWrapper>
+              </ItemWrapper>
+            </ItemOuterWrapper>
+          );
         })}
       </ListBody>
     </ListContainer>
