@@ -11,16 +11,16 @@ import backgroundImage from './assets/background.jpg';
 const App: React.FC = () => {
   return (
     <AppDataProvider>
-      <CenteredContainer>
+      <AppBackGroundContainer>
         <AppRouter />
-      </CenteredContainer>
+      </AppBackGroundContainer>
     </AppDataProvider>
   );
 };
 
 export default App;
 
-const CenteredContainer = styled.div`
+const AppBackGroundContainer = styled.div`
   height: 100vh; // 화면의 높이 전체를 차지
   display: flex; // flexbox를 사용
   justify-content: center; // 수평 중앙 정렬
