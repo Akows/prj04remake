@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   ItemOuterWrapper,
   ItemInfoWrapper,
@@ -31,11 +32,21 @@ const ListItem = forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
     return `/assets/characterImage/${encodedName}.png`;
   };
 
+  const navigate = useNavigate();
+  const handleItemClick = () => {
+    // 상세 페이지로 이동할 때, state로 데이터도 같이 전달.
+    navigate(`/infoitem/${item.name}`, { state: { characterData: item } });
+  };
+
   // 이미지 경로 생성
   const imagePath = getCharacterImagePath(item.name);
 
   return (
-    <ItemOuterWrapper ref={isLast ? ref : null} imagePath={imagePath}>
+    <ItemOuterWrapper
+      ref={isLast ? ref : null}
+      imagePath={imagePath}
+      onClick={handleItemClick}
+    >
       <ItemInfoWrapper>
         <ItemName>{item.name}</ItemName>
         <ItemDetails>
