@@ -21,14 +21,14 @@ const App: React.FC = () => {
 export default App;
 
 const AppBackGroundContainer = styled.div`
-  height: 100vh; // 화면의 높이 전체를 차지
+  min-height: 100vh; // 내부 컨텐츠가 100vh를 초과해도 배경 이미지가 확장될 수 있도록.
   display: flex; // flexbox를 사용
   justify-content: center; // 수평 중앙 정렬
   align-items: flex-start; // 수직 중앙 정렬
 
-  background-image: url(${backgroundImage}); // 여기에 원하는 배경 이미지 경로를 입력하세요
-  background-size: cover; // 배경 이미지가 컨테이너 크기에 꽉 차게 조절됩니다.
-  background-repeat: no-repeat; // 이미지가 반복되지 않게 합니다.
-  background-position: center; // 이미지의 중앙이 컨테이너의 중앙과 일치하게 합니다.
-  background-attachment: fixed; // 스크롤을 내려도 배경 이미지가 고정됩니다.
+  background-image: url(${backgroundImage});
+  background-size: cover; // 배경 이미지가 컨테이너 크기에 꽉 차게 조절.
+  background-repeat: no-repeat; // 이미지가 반복되지 않도록.
+  background-position: center; // 이미지의 중앙이 컨테이너의 중앙과 일치하게 하도록.
+  background-attachment: fixed; // 스크롤을 내려도 배경 이미지가 고정.
 `;
