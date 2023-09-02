@@ -4,7 +4,7 @@ const useInfiniteScroll = () => {
   const [page, setPage] = useState<number>(1);
   const observer = useRef<any>();
 
-  const lastCharacterElementRef = useCallback((node: HTMLDivElement) => {
+  const lastElementRef = useCallback((node: HTMLDivElement) => {
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
@@ -14,7 +14,7 @@ const useInfiniteScroll = () => {
     if (node) observer.current.observe(node);
   }, []);
 
-  return { page, lastCharacterElementRef };
+  return { page, lastElementRef };
 };
 
 export default useInfiniteScroll;
