@@ -6,7 +6,6 @@ import {
   ItemName,
   RarityInfo,
   VisionInfo,
-  CharacterImage,
 } from '../../styles/InfoListCommonStyles';
 
 interface ListItemProps {
@@ -28,14 +27,15 @@ const ListItem = forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
 
   const getCharacterImagePath = (characterName: string) => {
     const formattedName = capitalizeFirstLetter(characterName);
-    return `/assets/characterImage/${formattedName}.png`;
+    const encodedName = encodeURIComponent(formattedName); // 인코딩 추가
+    return `/assets/characterImage/${encodedName}.png`;
   };
 
   // 이미지 경로 생성
   const imagePath = getCharacterImagePath(item.name);
 
   return (
-    <ItemOuterWrapper ref={isLast ? ref : null}>
+    <ItemOuterWrapper ref={isLast ? ref : null} imagePath={imagePath}>
       <ItemInfoWrapper>
         <ItemName>{item.name}</ItemName>
         <ItemDetails>
@@ -43,7 +43,6 @@ const ListItem = forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
           {item.vision && <VisionInfo>{item.vision}</VisionInfo>}
         </ItemDetails>
       </ItemInfoWrapper>
-      <CharacterImage src={imagePath} alt={item.name} />
     </ItemOuterWrapper>
   );
 });
