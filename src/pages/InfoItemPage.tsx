@@ -32,6 +32,7 @@ const InfoItemPage: React.FC = () => {
 
   const imagePath = getCharacterImagePath(`${name}`);
 
+  // 상세 페이지 url을 복사 붙여넣기 할 경우 페이지가 렌더링 되지 않는 문제 방지. (딥 링크 문제.)
   const navigate = useNavigate();
 
   useEffect(() => {
