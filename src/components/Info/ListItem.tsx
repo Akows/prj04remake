@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import {
   ItemOuterWrapper,
   ItemInfoWrapper,
   ItemDetails,
   ItemName,
-  StarsInfo,
-  ElementInfo,
+  RarityInfo,
+  VisionInfo,
   CharacterImage,
 } from '../../styles/InfoListCommonStyles';
 
@@ -21,16 +21,29 @@ interface ListItemProps {
 
 const ListItem = forwardRef<HTMLDivElement, ListItemProps>((props, ref) => {
   const { item, isLast } = props;
+
+  const capitalizeFirstLetter = (str: string): string => {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  };
+
+  const getCharacterImagePath = (characterName: string) => {
+    const formattedName = capitalizeFirstLetter(characterName);
+    return `/assets/characterImage/${formattedName}.png`;
+  };
+
+  // 이미지 경로 생성
+  const imagePath = getCharacterImagePath(item.name);
+
   return (
     <ItemOuterWrapper ref={isLast ? ref : null}>
       <ItemInfoWrapper>
         <ItemName>{item.name}</ItemName>
         <ItemDetails>
-          <StarsInfo>{item.rarity}✦</StarsInfo>
-          {item.vision && <ElementInfo>{item.vision}</ElementInfo>}
+          <RarityInfo>{item.rarity}✦</RarityInfo>
+          {item.vision && <VisionInfo>{item.vision}</VisionInfo>}
         </ItemDetails>
       </ItemInfoWrapper>
-      {item.imageUrl && <CharacterImage src={item.imageUrl} alt={item.name} />}
+      <CharacterImage src={imagePath} alt={item.name} />
     </ItemOuterWrapper>
   );
 });
