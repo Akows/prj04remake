@@ -93,7 +93,6 @@ const AppTitleArea = styled.div`
 `;
 
 const TitleText = styled.div`
-  font-family: 'GIfont';
   font-size: xx-large;
   font-weight: bolder;
   color: white; // 텍스트 색상을 흰색으로 설정.
@@ -113,7 +112,6 @@ const Button = styled.button`
   width: 180px;
   height: 80%;
   border-radius: 10px;
-  font-family: 'GIfont';
   font-size: large;
   font-weight: bolder;
   border: none;

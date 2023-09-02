@@ -29,8 +29,8 @@ export const ItemOuterWrapper = styled.div`
     width 0.3s ease,
     margin 0.3s ease; // 부드러운 애니메이션 효과를 위해 추가
 
+  // 가로 너비가 1200px 이하일 때 적용될 스타일
   @media (max-width: 1200px) {
-    // 가로 너비가 1200px 이하일 때 적용될 스타일
     width: 100%; // 너비를 100%로 설정
     margin: 15px 0; // 좌우 여백을 0으로 설정
   }

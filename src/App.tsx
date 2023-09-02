@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import AppRouter from './router/AppRouter';
 import { AppDataProvider } from './context/AppDataContext';
 import backgroundImage from './assets/background.jpg';
+import GlobalStyles from './styles/GlobalStyles';
 
 // React.FC?
 // Function Component의 약자로, 컴포넌트의 타입을 나타낸다.
@@ -10,11 +11,14 @@ import backgroundImage from './assets/background.jpg';
 
 const App: React.FC = () => {
   return (
-    <AppDataProvider>
-      <AppBackGroundContainer>
-        <AppRouter />
-      </AppBackGroundContainer>
-    </AppDataProvider>
+    <>
+      <GlobalStyles />
+      <AppDataProvider>
+        <AppBackGroundContainer>
+          <AppRouter />
+        </AppBackGroundContainer>
+      </AppDataProvider>
+    </>
   );
 };
 
