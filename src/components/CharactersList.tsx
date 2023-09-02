@@ -50,6 +50,8 @@ export default CharactersList;
 const ListContainer = styled.div`
   width: 100%;
   height: auto;
+
+  margin-top: 80px;
 `;
 
 const ListBody = styled.div`

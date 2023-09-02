@@ -1,7 +1,5 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import menuimg from '../assets/menu.png';
 import { AppDataContext } from '../context/AppDataContext';
 
 const MenuBar: React.FC = () => {
@@ -13,6 +11,7 @@ const MenuBar: React.FC = () => {
 
   const { dispatch } = appDataContext;
 
+  // 메뉴를 전환하는 기능.
   const handleDisplayClick = (componentName: string) => {
     dispatch({
       type: 'SET_DISPLAY',
@@ -20,82 +19,72 @@ const MenuBar: React.FC = () => {
     });
   };
 
+  // 스크롤을 내리면 메뉴바의 투명도가 0으로 바뀌는 기능.
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <AppbarHead>
-      <AppbarHeadUpper>
-        <MenuButtonArea>
-          <Link to="/introduce">
-            <MenuButton>
-              <MenuImage src={menuimg} alt={'menuimg'} />
-            </MenuButton>
-          </Link>
-        </MenuButtonArea>
+    <AppbarHead isScrolled={isScrolled}>
+      <AppbarContent>
         <AppTitleArea>
           <TitleText onClick={() => handleDisplayClick('introducemyself')}>
             Genshindex
           </TitleText>
         </AppTitleArea>
-      </AppbarHeadUpper>
-
-      <AppbarHeadLower>
         <ButtonArea>
-          <LowerButton onClick={() => handleDisplayClick('characters')}>
+          <Button onClick={() => handleDisplayClick('characters')}>
             Characters
-          </LowerButton>
+          </Button>
+          <Button onClick={() => handleDisplayClick('weapons')}>Weapons</Button>
         </ButtonArea>
-        <ButtonArea>
-          <LowerButton onClick={() => handleDisplayClick('weapons')}>
-            Weapons
-          </LowerButton>
-        </ButtonArea>
-      </AppbarHeadLower>
+      </AppbarContent>
     </AppbarHead>
   );
 };
 
 export default MenuBar;
 
-const AppbarHead = styled.div`
+const AppbarHead = styled.div<{ isScrolled: boolean }>`
   width: 100%;
-  height: 120px;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  background-color: ${props =>
+    props.isScrolled ? 'rgba(0, 0, 0)' : 'rgba(0, 0, 0, 0.5)'};
+  z-index: 10;
+  transition: background-color 0.3s; // 부드러운 전환 효과를 위해.
 `;
 
-const AppbarHeadUpper = styled.div`
-  width: 100%;
-  height: 50%;
+const AppbarContent = styled.div`
   display: flex;
-`;
-
-const MenuButtonArea = styled.div`
-  width: 10%;
-  height: 100%;
-`;
-
-const MenuButton = styled.button`
-  width: 40px;
-  height: 40px;
-  margin-top: 15px;
-  margin-left: 25px;
-  border-radius: 10px;
-  background-color: gray;
-  border: none;
-  outline: none;
-
-  &:active {
-    background-color: whitesmoke;
-  }
-`;
-
-const MenuImage = styled.img`
+  justify-content: space-between; // 가로 정렬.
+  align-items: center; // 세로 중앙 정렬.
   width: 100%;
   height: 100%;
-  margin-top: 2px;
+  padding: 0 20px; // 좌우에 패딩을 추가.
 `;
 
 const AppTitleArea = styled.div`
-  width: 90%;
+  width: 50%;
   height: 100%;
-  text-align: center;
+  display: flex; // 추가
+  align-items: center; // 중앙 정렬 (수직)
+  justify-content: flex-start; // 좌측 정렬 (수평)
 
   a {
     text-decoration: none;
@@ -107,26 +96,22 @@ const TitleText = styled.div`
   font-family: 'GIfont';
   font-size: xx-large;
   font-weight: bolder;
-  margin-top: 18px;
-`;
-
-const AppbarHeadLower = styled.div`
-  width: 100%;
-  height: 50%;
-  display: flex;
-  justify-content: center;
+  color: white; // 텍스트 색상을 흰색으로 설정.
 `;
 
 const ButtonArea = styled.div`
-  width: 250px;
+  width: 50%;
   height: 100%;
-  margin: 0 10px; // 버튼 사이에 간격을 주기 위해 마진을 추가합니다.
+  display: flex; // 가로로 배치.
+  align-items: center; // 세로 중앙 정렬.
+  justify-content: flex-end; // 우측 정렬.
+  gap: 10px; // 버튼 간 간격.
+  padding-right: 30px; // 우측에서의 간격.
 `;
 
-const LowerButton = styled.button`
-  width: 100%;
-  height: 60%;
-  margin-top: 10px;
+const Button = styled.button`
+  width: 180px;
+  height: 80%;
   border-radius: 10px;
   font-family: 'GIfont';
   font-size: large;
