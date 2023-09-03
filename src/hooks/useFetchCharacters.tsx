@@ -8,7 +8,7 @@ const useFetchCharacters = (page: number) => {
   // 객체의 키와 값을 타입으로 강제하는 데 사용.
   const [data, setData] = useState<Record<number, any[]>>({});
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<null | string>(null);
+  const [error, setError] = useState<string>('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,7 +41,7 @@ const useFetchCharacters = (page: number) => {
         setData(prevData => ({ ...prevData, [page]: characterData }));
         setLoading(false);
       } catch (err) {
-        setError('Error fetching data');
+        setError('데이터를 불러오는 과정에 에러가 발생하였습니다.');
         setLoading(false);
       }
     };

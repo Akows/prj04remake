@@ -20,7 +20,7 @@ const ListContainer: React.FC = () => {
   const allData = Object.values(data).flat();
 
   if (loading) return <Loading />;
-  if (error) return <Error />;
+  if (error) return <Error message={error} />;
 
   return (
     <ListContainers>
