@@ -12,7 +12,7 @@
 ### ✔️ 배포
 
 (리메이크 배포 링크)
-- `vercel` [🔗Link](https://pre-onboarding-2-17-deploy.web.app/)
+- `vercel` [🔗Link](https://prj04remake.vercel.app/)
 
 (원본 배포 링크)
 - `Google Firebase` [🔗Link](https://prj4deploy.web.app/) 
