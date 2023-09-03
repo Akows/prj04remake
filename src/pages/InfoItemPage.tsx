@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
 import {
   ItemOuterWrapper,
   ItemInfoWrapper,
@@ -32,25 +32,18 @@ type Constellation = {
   level: number;
 };
 
-type CharacterData = {
-  name: string;
-  title: string;
-  vision: string;
-  weapon: string;
-  nation: string;
-  affiliation: string;
-  rarity: number;
-  constellation: string;
-  birthday: string;
-  description: string;
-  skillTalents: SkillTalent[];
-  passiveTalents: PassiveTalent[];
-  constellations: Constellation[];
-  vision_key: string;
-  weapon_type: string;
-};
-
 const InfoItemPage: React.FC = () => {
+  // 드롭다운 메뉴를 관리하기 위한 상태 변수들.
+  const [skillDropdownOpen, setSkillDropdownOpen] = useState<number | null>(
+    null,
+  );
+  const [talentDropdownOpen, setTalentDropdownOpen] = useState<number | null>(
+    null,
+  );
+  const [constellationDropdownOpen, setConstellationDropdownOpen] = useState<
+    number | null
+  >(null);
+
   // 상세 페이지에서는 데이터를 어떻게 다루어야 하는가?
   // 제일 간단한 방법 : param으로 키워드만 받아서 데이터를 다시 호출.
   // 혹은 이전 컴포넌트에서 useNavigate나 Link 태그로 state 전달.
@@ -61,6 +54,12 @@ const InfoItemPage: React.FC = () => {
 
   // 이미지 경로 불러오기.
   const imagePath = getCharacterImagePath(`${characterData.name}`);
+
+  // 생일 데이터의 존재하지 않는 4자리 년도 부분을 제거하는 함수.
+  const getMonthAndDay = (birthday: string) => {
+    const dateParts = birthday.split('-');
+    return `${dateParts[1]}-${dateParts[2]}`; // MM-DD 형식 반환
+  };
 
   // 상세 페이지 url을 복사 붙여넣기 할 경우 페이지가 렌더링 되지 않는 문제 방지. (딥 링크 문제.)
   const navigate = useNavigate();
@@ -98,7 +97,7 @@ const InfoItemPage: React.FC = () => {
             <p>무기: {characterData.weapon}</p>
             <p>국가: {characterData.nation}</p>
             <p>소속: {characterData.affiliation}</p>
-            <p>생일: {characterData.birthday}</p>
+            <p>생일: {getMonthAndDay(characterData.birthday)}</p>
           </div>
         </InfoContent>
       </InfoBox>
@@ -115,12 +114,18 @@ const InfoItemPage: React.FC = () => {
       <InfoBox>
         <InfoContent>
           <InfoTitle>스킬</InfoTitle>
-          {/* 본문 */}
           {characterData.skillTalents.map(
             (skill: SkillTalent, index: number) => (
-              <div key={index}>
+              <div
+                key={index}
+                onClick={() =>
+                  setSkillDropdownOpen(prev => (prev === index ? null : index))
+                }
+              >
                 <h3>{skill.name}</h3>
-                <p>{skill.description}</p>
+                <DropdownContent isOpen={skillDropdownOpen === index}>
+                  <p>{skill.description}</p>
+                </DropdownContent>
               </div>
             ),
           )}
@@ -132,9 +137,16 @@ const InfoItemPage: React.FC = () => {
           <InfoTitle>탈렌트</InfoTitle>
           {characterData.passiveTalents.map(
             (talent: PassiveTalent, index: number) => (
-              <div key={index}>
+              <div
+                key={index}
+                onClick={() =>
+                  setTalentDropdownOpen(prev => (prev === index ? null : index))
+                }
+              >
                 <h3>{talent.name}</h3>
-                <p>{talent.description}</p>
+                <DropdownContent isOpen={talentDropdownOpen === index}>
+                  <p>{talent.description}</p>
+                </DropdownContent>
               </div>
             ),
           )}
@@ -146,9 +158,18 @@ const InfoItemPage: React.FC = () => {
           <InfoTitle>별자리</InfoTitle>
           {characterData.constellations.map(
             (constellation: Constellation, index: number) => (
-              <div key={index}>
+              <div
+                key={index}
+                onClick={() =>
+                  setConstellationDropdownOpen(prev =>
+                    prev === index ? null : index,
+                  )
+                }
+              >
                 <h3>{constellation.name}</h3>
-                <p>{constellation.description}</p>
+                <DropdownContent isOpen={constellationDropdownOpen === index}>
+                  <p>{constellation.description}</p>
+                </DropdownContent>
               </div>
             ),
           )}
@@ -197,4 +218,20 @@ const InfoContent = styled.div`
   @media (max-width: 1200px) {
     margin-left: 20px;
   }
+`;
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const DropdownContent = styled.div<{ isOpen: boolean }>`
+  display: ${props => (props.isOpen ? 'block' : 'none')};
+  animation: ${fadeIn} 0.3s forwards;
 `;
