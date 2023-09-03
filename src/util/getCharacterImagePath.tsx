@@ -3,12 +3,11 @@ const capitalizeFirstLetter = (str: string): string => {
 };
 
 const getCharacterImagePath = (characterName: string) => {
-  const formattedName = capitalizeFirstLetter(characterName).replace(
-    /\s+/g,
-    '_',
-  );
-  const encodedName = encodeURIComponent(formattedName); // 인코딩 추가
-  return `/assets/characterImage/${encodedName}.png`;
+  const formattedName = characterName
+    .split(' ')
+    .map(capitalizeFirstLetter)
+    .join('_');
+  return `/assets/characterImage/${formattedName}.png`;
 };
 
 export { getCharacterImagePath };
