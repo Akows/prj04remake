@@ -42,15 +42,12 @@ const MenuBar: React.FC = () => {
     <AppbarHead isScrolled={isScrolled}>
       <AppbarContent>
         <AppTitleArea>
-          <TitleText onClick={() => handleDisplayClick('introducemyself')}>
-            Genshindex
-          </TitleText>
+          <TitleText>Genshindex</TitleText>
         </AppTitleArea>
         <ButtonArea>
           <Button onClick={() => handleDisplayClick('characters')}>
             Characters
           </Button>
-          <Button onClick={() => handleDisplayClick('weapons')}>Weapons</Button>
         </ButtonArea>
       </AppbarContent>
     </AppbarHead>
