@@ -8,6 +8,7 @@ import {
   RarityInfo,
   VisionInfo,
 } from '../styles/InfoListCommonStyles';
+import { getCharacterImagePath } from '../util/getCharacterImagePath';
 
 const InfoItemPage: React.FC = () => {
   // 상세 페이지에서는 데이터를 어떻게 다루어야 하는가?
@@ -19,16 +20,6 @@ const InfoItemPage: React.FC = () => {
 
   const location = useLocation();
   const characterData = location.state?.characterData;
-
-  const capitalizeFirstLetter = (str: string): string => {
-    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
-  };
-
-  const getCharacterImagePath = (characterName: string) => {
-    const formattedName = capitalizeFirstLetter(characterName);
-    const encodedName = encodeURIComponent(formattedName); // 인코딩 추가
-    return `/assets/characterImage/${encodedName}.png`;
-  };
 
   const imagePath = getCharacterImagePath(`${name}`);
 
