@@ -2,8 +2,8 @@ import React from 'react';
 import ListItem from './ListItem';
 import useFetchCharacters from '../../hooks/useFetchCharacters';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import Loading from '../common/Loading';
-import Error from '../common/Error';
+import Loading from '../Common/Loading';
+import Error from '../Common/Error';
 import { ListContainers, ListBody } from '../../styles/InfoListCommonStyles';
 
 const ListContainer: React.FC = () => {
