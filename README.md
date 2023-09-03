@@ -1,39 +1,84 @@
-# prj04remake
-prj04의 2023년 리메이크.
+# 개인 프로젝트 04 - React-GenshinAPI, 2023 리메이크!
 
-# 설치 순서
+## 👥 Member Info
 
-npx create-react-app . --template typescript
+### 이유승
 
-Prettier와 관련된 패키지 설치
-npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
+## 💪🏻프로젝트 목표
 
-ESLint 설정
-.eslintrc.json 또는 .eslintrc.js 파일을 프로젝트의 루트에 생성하거나, package.json 내에 ESLint 설정 섹션을 추가
+- 게임 ‘원신’을 주제로 하는 외부 API 호출, 무한 스크롤 기능이 포함된 앱 구현. 
+- 리메이크에서는 Styled-Components, TypeScript, React.js Custom Hooks 등의 사용 능력 증진을 위해 기능 동작 방식을 리팩토링.
 
-Prettier 설정
-프로젝트 루트에 .prettierrc 파일을 생성하고, 원하는 Prettier 설정을 추가
+### ✔️ 배포
 
-스크립트 추가 (선택사항)
-package.json에 아래와 같은 스크립트를 추가하여 소스 코드의 포맷을 쉽게 할 수 있다.
+(리메이크 배포 링크)
+- `vercel` [🔗Link](https://pre-onboarding-2-17-deploy.web.app/)
 
-"scripts": {
-  "format": "prettier --write \"src/**/*.ts*\"",
-  "lint": "eslint 'src/**/*.{ts,tsx}' --quiet --fix"
-}
+(원본 배포 링크)
+- `Google Firebase` [🔗Link](https://prj4deploy.web.app/) 
 
-format 스크립트:
+## 🛫 시작 가이드
 
-prettier --write \"src/**/*.ts*\": 이 명령은 Prettier를 사용하여 프로젝트의 src 디렉토리 내 모든 TypeScript (.ts, .tsx) 파일들을 자동으로 포맷팅합니다.
---write 플래그는 포맷팅 된 결과를 파일에 직접 쓰라는 것을 의미합니다.
-사용 예: npm run format
-lint 스크립트:
+- 실행을 위해 다음 Node version이 필요합니다.
+  [Node.js 18.17.0](https://nodejs.org/ca/blog/release/v18.17.0/)
 
-eslint 'src/**/*.{ts,tsx}' --quiet --fix: 이 명령은 ESLint를 사용하여 src 디렉토리 내의 모든 TypeScript 파일들에 대한 linting을 수행합니다.
---quiet 플래그는 경고 메시지보다 중요한 에러 메시지만 출력하도록 합니다.
---fix 플래그는 자동으로 고칠 수 있는 linting 문제들을 수정하도록 ESLint에 지시합니다.
-사용 예: npm run lint
+- 실행 방법 (2가지 중 택 1)
+  > 1. 배포 링크를 통한 접속
+  > 2. ZIP 파일 다운로드 및 압축 풀기 후 코드 에디터로 실행
 
-* 다만 VSCode에서는 ESLint와 Prettier를 자동으로 적용하는 확장 프로그램을 설치하면 코드를 저장할 때마다 자동으로 포맷팅과 린팅을 적용할 수 있다.
+```
+$ npm i
+$ npm run start
+```
 
-위 스크립트는 전체 프로젝트에 대한 포맷팅과 린팅을 적용할 때 사용한다.
+## 🛠️ 사용한 기술 스택
+
+#### Environment
+
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Git hub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
+![Source Tree](https://img.shields.io/badge/SOURCE%20TREE-blue?style=for-the-badge&logo=sourcetree)
+
+#### Config
+
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+
+#### Development
+
+![HTML5](https://img.shields.io/badge/HTML-%23F5AF64?style=for-the-badge&logo=html5)
+![CSS3](https://img.shields.io/badge/CSS-%230A82FF?style=for-the-badge&logo=css3)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=black)
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![StyledComponents]<img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
+![ReactRouterDom]<img src="https://img.shields.io/badge/react router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
+![Axios](https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=black)
+
+## 주요 기능
+
+- 외부 API 호출.
+- 무한 스크롤.
+- 컴포넌트 분리와 커스텀 훅, Context API으로 구현된 기능들.
+
+## 담당 역할
+
+- 프로젝트 기획, UI 디자인, 기능 구현, 프로젝트 버전 관리 등 개발 전반.
+
+## 성과
+
+- Typescript 사용 방법과 사용 이유.
+- styled-components 사용 경험 및 사용 능력 증진.
+- 커스텀 훅의 사용 이유와 사용 방법 숙지.
+
+## 개선할 점
+
+- Type을 적용하고 사용하는데 이해와 더 숙련된 방법을 익혀야한다.
+- 전역 관리 라이브러리 + styled-components + Typescript의 동시 사용 방법 공부.
+(JavaScript를 사용했을 때와는 상당히 다르다..)
+
+## 🌲프로젝트 구조
+
+```bash
+src
+```
