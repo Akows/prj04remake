@@ -93,7 +93,7 @@ const InfoItemPage: React.FC = () => {
         <InfoContent>
           <InfoTitle>기본 정보</InfoTitle>
           <div>
-            <p>제목: {characterData.title}</p>
+            <p>별명: {characterData.title}</p>
             <p>무기: {characterData.weapon}</p>
             <p>국가: {characterData.nation}</p>
             <p>소속: {characterData.affiliation}</p>
@@ -232,6 +232,10 @@ const fadeIn = keyframes`
 `;
 
 const DropdownContent = styled.div<{ isOpen: boolean }>`
-  display: ${props => (props.isOpen ? 'block' : 'none')};
+  max-height: ${props =>
+    props.isOpen ? '200px' : '0'}; // 이 값은 필요에 따라 조절할 수 있습니다.
+  overflow-y: auto; // 내용이 영역을 초과하면 스크롤바 표시
+  transition: max-height 0.5s ease-out; // 높이 변경에 대한 부드러운 효과
+  display: block; // 항상 block으로 설정하며, max-height로 드롭다운의 표시 여부를 제어합니다.
   animation: ${fadeIn} 0.3s forwards;
 `;
