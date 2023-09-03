@@ -57,6 +57,9 @@ const InfoItemPage: React.FC = () => {
 
   // 생일 데이터의 존재하지 않는 4자리 년도 부분을 제거하는 함수.
   const getMonthAndDay = (birthday: string) => {
+    if (!birthday) {
+      return birthday;
+    }
     const dateParts = birthday.split('-');
     return `${dateParts[1]}-${dateParts[2]}`; // MM-DD 형식 반환
   };
