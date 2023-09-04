@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-
-const ITEMS_PER_PAGE = 10;
+import { ITEMS_PER_PAGE } from '../constants/fetchData';
 
 const useFetchCharacters = (page: number) => {
   // Record?
