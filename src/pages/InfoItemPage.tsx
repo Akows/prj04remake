@@ -53,7 +53,11 @@ const InfoItemPage: React.FC = () => {
   const characterData = location.state?.characterData;
 
   // 이미지 경로 불러오기.
-  const imagePath = getCharacterImagePath(`${characterData.name}`);
+  // characterData가 존재하지 않을 경우 경로를 ''으로 설정.
+  const imagePath =
+    characterData && characterData.name
+      ? getCharacterImagePath(characterData.name)
+      : '';
 
   // 생일 데이터의 존재하지 않는 4자리 년도 부분을 제거하는 함수.
   const getMonthAndDay = (birthday: string) => {
@@ -68,6 +72,8 @@ const InfoItemPage: React.FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    console.log(characterData);
+
     if (!characterData) {
       alert('잘못된 접근입니다.'); // 경고창 출력
       navigate('/'); // 메인 페이지로 리다이렉트

@@ -28,7 +28,7 @@ export default MainPage;
 
 const MainPageWrapper = styled.div`
   width: 100vw;
-  height: auto;
+  height: 100vh;
 
   display: inline-flex;
   align-items: center;
