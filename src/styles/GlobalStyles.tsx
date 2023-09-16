@@ -13,6 +13,10 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'GIfont', sans-serif; // 폰트를 적용하려는 기본 폰트와 함께 사용하세요.
   }
 
+  html, body {
+    height: 100%;
+  }
+
   /* 항상 스크롤바가 보이도록 설정 */
   html {
     overflow-y: scroll;

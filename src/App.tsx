@@ -25,7 +25,7 @@ const App: React.FC = () => {
 export default App;
 
 const AppBackGroundContainer = styled.div`
-  min-height: 100vh; // 내부 컨텐츠가 100vh를 초과해도 배경 이미지가 확장될 수 있도록.
+  height: 100%; // 내부 컨텐츠가 100vh를 초과해도 배경 이미지가 확장될 수 있도록.
   display: flex; // flexbox를 사용
   justify-content: center; // 수평 중앙 정렬
   align-items: flex-start; // 수직 중앙 정렬
