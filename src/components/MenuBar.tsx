@@ -45,9 +45,9 @@ const MenuBar: React.FC = () => {
           <TitleText>Genshindex</TitleText>
         </AppTitleArea>
         <ButtonArea>
-          <Button onClick={() => handleDisplayClick('characters')}>
+          {/* <Button onClick={() => handleDisplayClick('characters')}>
             Characters
-          </Button>
+          </Button> */}
         </ButtonArea>
       </AppbarContent>
     </AppbarHead>
