@@ -12,7 +12,7 @@ const useFetchCharacters = (page: number) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://api.genshin.dev/characters`);
+        const response = await axios.get(`https://genshin.jmp.blue/characters`);
         const characterNames = response.data;
 
         // 1 페이지에 해당되는 데이터만을 호출하기 위해 캐릭터 이름을 10 단위로 slice.
@@ -28,7 +28,7 @@ const useFetchCharacters = (page: number) => {
         // 이 API에서는 페이지네이션을 위한 param등을 지원하지 않고..
         // 기본 주소에는 달랑 캐릭터 이름만을 반환하기 때문에 목록 컴포넌트에서 이름 이외에 부가적인 정보를 출력하기 위해서는 어쩔 수 없이 이런 방법을 선택해야한다.
         const characterDataPromises = slicedNames.map((name: string) =>
-          axios.get(`https://api.genshin.dev/characters/${name}`),
+          axios.get(`https://genshin.jmp.blue/characters/${name}`),
         );
 
         const characterDataResponses = await Promise.all(characterDataPromises);
